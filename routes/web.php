@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VisitorController;
+use App\Http\Controllers\LifebuoyController;
+use App\Http\Controllers\RentController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +24,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('visitors', VisitorController::class);
+
+Route::resource('lifebuoys', LifebuoyController::class);
+
+Route::resource('rents', RentController::class);
+
