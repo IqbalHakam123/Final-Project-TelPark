@@ -1,8 +1,14 @@
 // Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
+//@import url('https://fonts.bunny.net/css?family=Nunito');
 
 // Variables
-@import 'variables';
+//@import 'variables';
+* {
+    font-family: 'Inter', sans-serif !important;
+}
+$primary : #6AB0BE;
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+@import "bootstrap-icons/font/bootstrap-icons.css";
+

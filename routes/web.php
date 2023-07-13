@@ -18,7 +18,7 @@ use App\Http\Controllers\RentController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
