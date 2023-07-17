@@ -45,12 +45,18 @@
           </div>
           <div class="col-lg-10">
               <div class="container mb-4" style="padding-left: 3%";>
-                  <div class="card rounded-4 pt-2 p-3 pb-0 border-0">
+                  <div class="card rounded-4 p-3 border-0">
                     <div class="row">
-                        <h6 style="color: #5493A2; font-weight:600">
-                            <img src="{{Vite::asset('resources/images/actor.png')}}" alt="login form" class="img-fluid me-2" style="width:6%"> Andre Ahmad
-                        </h6>
+                        <div class="hstack gap-3 text-primary">
+                            <img src="{{Vite::asset('resources/images/actor.png')}}" alt="login form" class="img-fluid" style="width:6%">
+                            <span style="font-weight: bold;"> Andre Ahmad </span>
+                            <div class="vr mx-3"></div>
+                            <div class="card bg-light border-0 p-2 rounded-5 text-primary">
+                                {{  now()->toDateString() }}
+                            </div>
+                          </div>
                     </div>
+
                       {{-- <i class="bi-person-circle me-1"></i> {{ Auth::user()->name }} --}}
                   </div>
               </div>
