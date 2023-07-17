@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Visitor;
+use App\Models\Age;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class VisitorController extends Controller
 {
@@ -11,7 +15,15 @@ class VisitorController extends Controller
      */
     public function index()
     {
-        //
+        $pageTitle = "Visitor List";
+
+        // ELOQUENT
+        $visitors = Visitor::all();
+
+        return view('visitor.index', [
+            'pageTitle' => $pageTitle,
+            'visitors' => $visitors
+        ]);
     }
 
     /**
@@ -19,7 +31,12 @@ class VisitorController extends Controller
      */
     public function create()
     {
-        //
+        $pageTitle = "Create Visitor";
+
+        // ELOQUENT
+        $ages = Age::all();
+
+        return view('visitor.create', compact('pageTitle', 'ages'));
     }
 
     /**
@@ -27,7 +44,30 @@ class VisitorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'required' => ':Attribute harus diisi.',
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'phone' => 'required',
+            // 'age' => 'required',
+        ], $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        // ELOQUENT
+        $visitor = New Visitor;
+        $visitor->firstname = $request->firstName;
+        $visitor->lastname = $request->lastName;
+        $visitor->phone = $request->phone;
+        $visitor->age_id = $request->age;
+        $visitor->save();
+
+        return redirect()->route('visitors.index');
     }
 
     /**
@@ -43,7 +83,13 @@ class VisitorController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $pageTitle = 'Edit Visitor';
+
+        //ELOQUENT
+        $ages = Age::all();
+        $visitor = Visitor::find($id);
+
+        return view('visitor.edit', compact('pageTitle', 'ages', 'visitor'));
     }
 
     /**
@@ -51,7 +97,31 @@ class VisitorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $messages = [
+            'required' => ':Attribute harus diisi.',
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'phone' => 'required',
+            // 'age' => 'required',
+        ], $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        // ELOQUENT
+        $visitor = Visitor::find($id);
+        $visitor->firstname = $request->firstName;
+        $visitor->lastname = $request->lastName;
+        $visitor->phone = $request->phone;
+        $visitor->age_id = $request->age;
+        $visitor->save();
+
+        return redirect()->route('visitors.index');
+
     }
 
     /**
@@ -59,6 +129,9 @@ class VisitorController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // ELOQUENT
+        Visitor::find($id)->delete();
+
+        return redirect()->route('visitors.index');
     }
 }

@@ -45,7 +45,7 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="password" class="form-label">Password</label>
-                                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror rounded-5" name="email" required autocomplete="current-password" placeholder="Enter Your Password">
+                                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror rounded-5" name="password" required autocomplete="current-password" placeholder="Enter Your Password">
 
                                                     @error('password')
                                                         <span class="invalid-feedback" role="alert">
