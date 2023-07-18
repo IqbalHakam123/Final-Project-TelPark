@@ -21,16 +21,9 @@
                     <div class="mb-5 p-5 mt-3">
                         <div class="row">
                             <div class="col-md-12 mb-3 mt-5">
-                                <label for="firstName" class="form-label">First Name</label>
-                                <input class="form-control @error('firstName') is-invalid @enderror" type="text" name="firstName" id="firstName" value="{{ old('firstName') }}" placeholder="Enter First Name">
-                                @error('firstName')
-                                    <div class="text-danger"><small>{{ $message }}</small></div>
-                                @enderror
-                            </div>
-                            <div class="col-md-12 mb-3">
-                                <label for="lastName" class="form-label">Last Name</label>
-                                <input class="form-control @error('lastName') is-invalid @enderror" type="text" name="lastName" id="lastName" value="{{ old('lastName') }}" placeholder="Enter Last Name">
-                                @error('lastName')
+                                <label for="name" class="form-label">Name</label>
+                                <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" id="name" value="{{ old('name') }}" placeholder="Enter Name">
+                                @error('name')
                                     <div class="text-danger"><small>{{ $message }}</small></div>
                                 @enderror
                             </div>

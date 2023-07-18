@@ -17,8 +17,7 @@
         <table class="table table-hover mb-0  bg-white">
             <thead class="table-primary rounded-4">
                 <tr >
-                    <th style="padding-left:2%">First Name</th>
-                    <th>Last Name</th>
+                    <th style="padding-left:2%">Name</th>
                     <th>Phone</th>
                     <th>Age</th>
                     <th></th>
@@ -27,8 +26,7 @@
             <tbody>
                 @foreach ($visitors as $visitor)
                     <tr>
-                        <td>{{ $visitor->firstname }}</td>
-                        <td>{{ $visitor->lastname }}</td>
+                        <td>{{ $visitor->name }}</td>
                         <td>{{ $visitor->phone }}</td>
                         <td>{{ $visitor->age->name }}</td>
                         <td>
