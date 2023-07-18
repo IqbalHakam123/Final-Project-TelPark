@@ -49,8 +49,7 @@ class VisitorController extends Controller
         ];
 
         $validator = Validator::make($request->all(), [
-            'firstName' => 'required',
-            'lastName' => 'required',
+            'name' => 'required',
             'phone' => 'required',
             // 'age' => 'required',
         ], $messages);
@@ -61,8 +60,7 @@ class VisitorController extends Controller
 
         // ELOQUENT
         $visitor = New Visitor;
-        $visitor->firstname = $request->firstName;
-        $visitor->lastname = $request->lastName;
+        $visitor->name = $request->name;
         $visitor->phone = $request->phone;
         $visitor->age_id = $request->age;
         $visitor->save();
@@ -102,8 +100,7 @@ class VisitorController extends Controller
         ];
 
         $validator = Validator::make($request->all(), [
-            'firstName' => 'required',
-            'lastName' => 'required',
+            'name' => 'required',
             'phone' => 'required',
             // 'age' => 'required',
         ], $messages);
@@ -114,8 +111,7 @@ class VisitorController extends Controller
 
         // ELOQUENT
         $visitor = Visitor::find($id);
-        $visitor->firstname = $request->firstName;
-        $visitor->lastname = $request->lastName;
+        $visitor->name = $request->name;
         $visitor->phone = $request->phone;
         $visitor->age_id = $request->age;
         $visitor->save();
