@@ -55,7 +55,7 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="deadline" class="form-label">Deadline</label>
-                            <input class="form-control @error('deadline') is-invalid @enderror" type="time" name="deadline" id="deadline" value="{{ old('deadline') }}" placeholder="Enter Deadline">
+                            <input class="form-control @error('deadline') is-invalid @enderror" type="time" name="deadline" id="deadline" value="17:00" disabled>
                             @error('deadline')
                                 <div class="text-danger"><small>{{ $message }}</small></div>
                             @enderror

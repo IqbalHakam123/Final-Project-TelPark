@@ -63,6 +63,19 @@
                                 </div>
                             </div>
                         </td>
+                        <td>
+                            <div class="d-flex">
+                                <a href="#" class="btn btn-outline-primary btn-sm me-2 rounded-5"><i class="bi-arrow-return-left"></i></a>
+
+                                <div>
+                                    <form action="" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-outline-danger btn-sm me-2 rounded-5"><i class="bi-trash"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
