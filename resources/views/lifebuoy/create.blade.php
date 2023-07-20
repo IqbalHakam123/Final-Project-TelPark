@@ -10,7 +10,7 @@
             </div>
             <div class="col-lg-3 col-xl-2">
                 <div class="d-grid gap-2">
-                    <a href="{{ route('lifebuoys.index')}}" class="btn btn-primary text white rounded-5"><i class="bi bi-minus-circle me-1"></i>Back</a>
+                    <a href="{{ route('lifebuoys.index')}}" class="btn btn-primary text-white rounded-5"><i class="bi bi-arrow-left-circle me-2"></i>Back</a>
                 </div>
             </div>
         </div>
@@ -48,10 +48,7 @@
                             </div>
                         </div>
                         <div class="row mt-5">
-                            <div class="col-md-6 d-grid">
-                                <a href="{{ route('lifebuoys.index') }}" class="btn btn-outline-primary btn-lg mt-3 rounded-5"><i class="bi-arrow-left-circle me-2"></i> Cancel</a>
-                            </div>
-                            <div class="col-md-6 d-grid">
+                            <div class="col-md-12 d-grid">
                                 <button type="submit" class="btn btn-primary btn-lg mt-3 rounded-5 text-white"><i class="bi-check-circle me-2"></i> Save</button>
                             </div>
                         </div>
