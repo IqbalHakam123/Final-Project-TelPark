@@ -58,7 +58,6 @@ class RentController extends Controller
             // // 'lastName' => 'required',
             // 'name' => 'required',
             'borrow' => 'required',
-            'deadline' => 'required',
 
         ], $messages);
 
