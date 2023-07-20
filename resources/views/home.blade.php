@@ -46,9 +46,13 @@
                 <div class="card rounded-4 p-4 mb-4 border-0">
                     <p style="color:#979797;font-family: Poppins;font-size: 15px;font-style: normal;font-weight: 400;">Number of</p>
                     <h3 style="color: #5493A2; font-weight:700">Rents </h3>
+
                     <p class="bi bi-tags-fill" style="font-size:40px; color: #5493A2;"><b class="mx-3">{{ $rent_count }}</b></p>
                 </div>
             </div>
         </div>
     </div>
+                    <p class="bi bi-tags-fill" style="font-size:40px; color: #5493A2;"><b class="mx-3">45</b></p>
+                    {{-- <i class="bi bi-tags-fill" style="font-size:40px; color: #5493A2;"><b>ggg</b></i> --}}
+    @yield('content')
 @endsection

@@ -6,26 +6,23 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class AgeSeeder extends Seeder
+class RideSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        DB::table('Ages')->insert([
+        DB::table('rides')->insert([
             [
-                'code' => 'A',
-                'name' => 'Anak-anak (6-14 Tahun)'
+                'name' => 'Kolam Arus'
             ],
             [
-                'code' => 'R',
-                'name' => 'Remaja (15-23 Tahun)'
+                'name' => 'Tube Slide'
             ],
             [
-                'code' => 'D',
-                'name' => 'Dewasa'
-            ]
+                'name' => 'Big Tornado'
+            ],
         ]);
     }
 }
