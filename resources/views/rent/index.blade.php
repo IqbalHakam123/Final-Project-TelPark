@@ -30,8 +30,9 @@
             <tbody>
                 @foreach ($rents as $rent)
                     <tr>
-                        <td>{{ $rent->visitor->firstname }}</td>
-                        {{-- <td>{{ $rent->visitor->lastname }}</td> --}}
+                        <td>{{ $rent->ride->name }}</td>
+                        <td>{{ $rent->visitor->name }}</td>
+                        <td>{{ $rent->lifebuoy->name }}</td>
                         <td>{{ date('h:i:sa', strtotime($rent['borrow'])) }}</td>
                         <td>{{ date('h:i:sa', strtotime($rent['deadline'])) }}</td>
                         <td>
