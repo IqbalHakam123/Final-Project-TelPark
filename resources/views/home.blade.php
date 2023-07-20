@@ -52,7 +52,5 @@
             </div>
         </div>
     </div>
-                    <p class="bi bi-tags-fill" style="font-size:40px; color: #5493A2;"><b class="mx-3">45</b></p>
-                    {{-- <i class="bi bi-tags-fill" style="font-size:40px; color: #5493A2;"><b>ggg</b></i> --}}
     @yield('content')
 @endsection
