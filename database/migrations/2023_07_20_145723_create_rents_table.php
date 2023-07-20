@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('rents', function (Blueprint $table) {
             $table->id();
             $table->foreignId('ride_id')->constrained();
-            $table->foreignId('lifebuoy_id')->constrained();
             $table->foreignId('visitor_id')->constrained();
+            $table->foreignId('lifebuoy_id')->constrained();
             $table->time('borrow');
             $table->time('deadline');
             $table->integer('is_delete')->default('0');
