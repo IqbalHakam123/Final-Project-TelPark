@@ -16,23 +16,23 @@
                         <img src="{{Vite::asset('resources/images/nisul-1.png')}}" alt="login form" class="img-fluid me-2" style="width:15%"> Tel-Park
                     </h4>
                 </div>
-                  <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu" style="padding:10%">
-                      <li class="nav-item">
+                  <ul class="nav nav-pills flex-column mb-sm-auto  align-items-center align-items-sm-start " id="menu" style="padding:10%;">
+                      <li class="nav-item mb-2">
                           <a href="{{ route('home') }}" class="nav-link align-middle px-0">
                               <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
                           </a>
                       </li>
-                      <li>
+                      <li class="mb-2">
                           <a href="{{ route('visitors.index') }}" class="nav-link px-0 align-middle">
                               <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Visitor</span></a>
                       </li>
-                      <li>
+                      <li class="mb-2">
                           <a href="{{ route('lifebuoys.index') }}" class="nav-link px-0 align-middle ">
                               <i class="fs-4 bi-life-preserver"></i> <span class="ms-1 d-none d-sm-inline">Lifebuoy</span></a>
                       </li>
-                      <li>
+                      <li class="mb-2">
                           <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                              <i class="fs-4 bi-tags-fill"></i> <span class="ms-1 d-none d-sm-inline">Products</span> </a>
+                              <i class="fs-4 bi-tags-fill"></i> <span class="ms-1 d-none d-sm-inline">Rent</span> </a>
                               <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                           </ul>
                       </li>
