@@ -28,12 +28,20 @@
                         <div class="row">
                             <div class="col-md-12 mb-3 mt-5">
                                 <label for="name" class="form-label">Name</label>
+
                                 <input class="form-control @error('name') is-invalid @enderror rounded-5" type="text" name="name" id="name" value="{{ $errors->any() ? old('name') : $visitor->name }}" placeholder="Enter Name">
+
+                                <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" id="name" value="{{ $errors->any() ? old('name') : $visitor->name }}" placeholder="Enter Name">
+
                                 @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
+
                             <div class="col-md-12 mb-3">
+
+                            <div class="col-md-6 mb-3">
+
                                 <label for="phone" class="form-label">Phone</label>
                                 <input class="form-control @error('phone') is-invalid @enderror rounded-5" type="text" name="phone" id="phone" value="{{ $errors->any() ? old('phone') : $visitor->phone }}" placeholder="Enter Phone" required="">
                                 @error('phone')

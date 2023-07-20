@@ -15,20 +15,17 @@ class VisitorSeeder extends Seeder
     {
         DB::table('visitors')->insert([
             [
-                'firstname' => 'Annisa',
-                'lastname' => 'Fairuz',
+                'name' => 'Annisa',
                 'phone' => '08122222356',
                 'age_id' => 1
             ],
             [
-                'firstname' => 'Rafly',
-                'lastname' => 'Akbar',
+                'name' => 'Rafly',
                 'phone' => '08155577799',
                 'age_id' => 2
             ],
             [
-                'firstname' => 'Iqbal',
-                'lastname' => 'Hakam',
+                'name' => 'Iqbal',
                 'phone' => '018245612365',
                 'age_id' => 1
             ]
