@@ -18,4 +18,9 @@ class Rent extends Model
     {
         return $this->belongsTo(Visitor::class);
     }
+
+    public function ride()
+    {
+        return $this->belongsTo(Ride::class);
+    }
 }
