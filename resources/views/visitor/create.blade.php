@@ -8,6 +8,11 @@
             <div class="col-lg-9 col-xl-10">
                 <h4 class="mb-3" style="color: #6AB0BE"><b>{{$pageTitle}}</b></h4>
             </div>
+            <div class="col-lg-3 col-xl-2">
+                <div class="d-grid gap-2">
+                    <a href="{{ route('lifebuoys.index')}}" class="btn btn-primary text-white rounded-5"><i class="bi bi-arrow-left-circle me-2"></i>Back</a>
+                </div>
+            </div>
         </div>
         <div class="card rounded-4 pt-2 p-3 pb-0 border-0" style="margin-left: 2%">
             <div class="row">
@@ -21,29 +26,22 @@
                     <div class="mb-5 p-5 mt-3">
                         <div class="row">
                             <div class="col-md-12 mb-3 mt-5">
-                                <label for="firstName" class="form-label">First Name</label>
-                                <input class="form-control @error('firstName') is-invalid @enderror" type="text" name="firstName" id="firstName" value="{{ old('firstName') }}" placeholder="Enter First Name">
-                                @error('firstName')
-                                    <div class="text-danger"><small>{{ $message }}</small></div>
-                                @enderror
-                            </div>
-                            <div class="col-md-12 mb-3">
-                                <label for="lastName" class="form-label">Last Name</label>
-                                <input class="form-control @error('lastName') is-invalid @enderror" type="text" name="lastName" id="lastName" value="{{ old('lastName') }}" placeholder="Enter Last Name">
-                                @error('lastName')
+                                <label for="name" class="form-label">Name</label>
+                                <input class="form-control @error('name') is-invalid @enderror rounded-5" type="text" name="name" id="name" value="{{ old('name') }}" placeholder="Enter Name">
+                                @error('name')
                                     <div class="text-danger"><small>{{ $message }}</small></div>
                                 @enderror
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="phone" class="form-label">Phone</label>
-                                <input class="form-control @error('phone') is-invalid @enderror" type="text" name="phone" id="phone" value="{{ old('phone') }}" placeholder="Enter Phone">
+                                <input class="form-control @error('phone') is-invalid @enderror rounded-5" type="text" name="phone" id="phone" value="{{ old('phone') }}" placeholder="Enter Phone">
                                 @error('phone')
                                     <div class="text-danger"><small>{{ $message }}</small></div>
                                 @enderror
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="age" class="form-label">Age</label>
-                                <select name="age" id="age" class="form-select">
+                                <select name="age" id="age" class="form-select rounded-5">
                                     @foreach ($ages as $age)
                                         <option value="{{ $age->id }}" {{ old('age') == $age->id ? 'selected' : '' }}>{{ $age->code.' - '.$age->name }}</option>
                                     @endforeach
@@ -54,11 +52,8 @@
                             </div>
                         </div>
                         <div class="row mt-5">
-                            <div class="col-md-6 d-grid">
-                                <a href="{{ route('visitors.index') }}" class="btn btn-outline-dark btn-lg mt-3"><i class="bi-arrow-left-circle me-2"></i> Cancel</a>
-                            </div>
-                            <div class="col-md-6 d-grid">
-                                <button type="submit" class="btn btn-dark btn-lg mt-3"><i class="bi-check-circle me-2"></i> Save</button>
+                            <div class="col-md-12 d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg mt-3 rounded-5 text-white"><i class="bi-check-circle me-2"></i> Save</button>
                             </div>
                         </div>
                     </div>
