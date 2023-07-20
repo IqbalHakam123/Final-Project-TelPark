@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="container" style="padding-left: 3%";>
         <h3 style="color: #5493A2; font-weight:700">Dashboard </h3>
         <p style="color:#979797;font-family: Poppins;font-size: 10px;font-style: normal;font-weight: 400;">Home / Dashboard </p>
@@ -33,43 +32,23 @@
                 <div class="card rounded-4 p-4 mb-4 border-0">
                     <p style="color:#979797;font-family: Poppins;font-size: 15px;font-style: normal;font-weight: 400;">Number of</p>
                     <h3 style="color: #5493A2; font-weight:700">Lifebuoys </h3>
-                    <p class="bi bi-life-preserver" style="font-size:40px; color: #5493A2;"><b class="mx-3">45</b></p>
+                    <p class="bi bi-life-preserver" style="font-size:40px; color: #5493A2;"><b class="mx-3">{{ $lifebuoy_count }}</b></p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-12 col-sm-12">
                 <div class="card rounded-4 p-4 mb-4 border-0">
                     <p style="color:#979797;font-family: Poppins;font-size: 15px;font-style: normal;font-weight: 400;">Number of</p>
                     <h3 style="color: #5493A2; font-weight:700">Visitors </h3>
-                    <p class="bi bi-people-fill" style="font-size:40px; color: #5493A2;"><b class="mx-3">45</b></p>
+                    <p class="bi bi-people-fill" style="font-size:40px; color: #5493A2;"><b class="mx-3">{{ $visitor_count }}</b></p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-12 col-sm-12">
                 <div class="card rounded-4 p-4 mb-4 border-0">
                     <p style="color:#979797;font-family: Poppins;font-size: 15px;font-style: normal;font-weight: 400;">Number of</p>
                     <h3 style="color: #5493A2; font-weight:700">Rents </h3>
-                    <p class="bi bi-tags-fill" style="font-size:40px; color: #5493A2;"><b class="mx-3">45</b></p>
-                    {{-- <i class="bi bi-tags-fill" style="font-size:40px; color: #5493A2;"><b>ggg</b></i> --}}
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                    <ul class="navbar-nav flex-row flex-wrap">
-                        {{-- <li class="nav-item col-2 col-md-auto"><a href="{{ route('home') }}" class="nav-link">Home</a></li> --}}
-                        <li class="nav-item col-2 col-md-auto"><a href="{{ route('visitors.index') }}" class="nav-link">Visitor List</a></li>
-                    </ul>
+                    <p class="bi bi-tags-fill" style="font-size:40px; color: #5493A2;"><b class="mx-3">{{ $rent_count }}</b></p>
                 </div>
             </div>
         </div>
     </div>
-    @yield('content')
 @endsection

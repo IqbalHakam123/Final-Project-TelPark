@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Lifebuoy;
+use App\Models\Visitor;
+use App\Models\Rent;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $lifebuoyCount = Lifebuoy::count();
+        $visitorCount = Visitor::count();
+        $rentCount = Rent::count();
+        return view('home', ['lifebuoy_count' => $lifebuoyCount, 'visitor_count' => $visitorCount, 'rent_count' => $rentCount]);
     }
 }
