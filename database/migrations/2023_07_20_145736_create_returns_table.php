@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('visitors', function (Blueprint $table) {
-            $table->string('phone')->change();
+        Schema::create('returns', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('rent_id')->constrained();
+            $table->time('return');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('visitors', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('returns');
     }
 };
