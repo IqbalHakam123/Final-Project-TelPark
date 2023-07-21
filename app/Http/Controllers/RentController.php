@@ -19,6 +19,7 @@ class RentController extends Controller
      */
     public function index()
     {
+
         $pageTitle = "Rent List";
 
         // ELOQUENT
@@ -149,6 +150,7 @@ class RentController extends Controller
 
     public function return_rent(Request $request, Rent $rent)
     {
+        date_default_timezone_set('Asia/Jakarta');
         DB::transaction(function () use ($request, $rent) {
             $return_rent = new ReturnRent();
             $return_rent->rent_id = $rent->id;
