@@ -30,8 +30,6 @@
 
                                 <input class="form-control @error('name') is-invalid @enderror rounded-5" type="text" name="name" id="name" value="{{ old('name') }}" placeholder="Enter Name">
 
-                                <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" id="name" value="{{ old('name') }}" placeholder="Enter Name">
-
                                 @error('name')
                                     <div class="text-danger"><small>{{ $message }}</small></div>
                                 @enderror
