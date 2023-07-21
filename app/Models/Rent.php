@@ -23,4 +23,9 @@ class Rent extends Model
     {
         return $this->belongsTo(Ride::class);
     }
+
+    public function return_rent()
+    {
+        return $this->hasOne(ReturnRent::class);
+    }
 }
