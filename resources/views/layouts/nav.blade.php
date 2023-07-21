@@ -31,7 +31,7 @@
                               <i class="fs-4 bi-life-preserver"></i> <span class="ms-1 d-none d-sm-inline">Lifebuoy</span></a>
                       </li>
                       <li class="mb-2">
-                          <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                          <a href="{{ route('rents.index') }}" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                               <i class="fs-4 bi-tags-fill"></i> <span class="ms-1 d-none d-sm-inline">Rent</span> </a>
                               <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                           </ul>
@@ -40,6 +40,15 @@
                           <a href="#" class="nav-link px-0 align-middle">
                               <i class="fs-4 bi-clock"></i> <span class="ms-1 d-none d-sm-inline">History</span> </a>
                       </li>
+                      <li>
+                        <a href="{{ route('logout') }}" class="nav-link px-0 align-middle" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"><i class="fs-4 bi-box-arrow-left"></i>
+                            <span class="ms-1 d-none d-sm-inline">Logout</span>
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
                   </ul>
               </div>
           </div>

@@ -55,11 +55,16 @@
                                                 </div>
                                             </div>
 
-                                            <div class="row mb-5 mt-5 ">
+                                            <div class="mb-3 mt-4">
                                                 <div class="d-grid">
                                                     <button type="submit" class="btn btn-primary rounded-5 text-white"><i class="bi bi-box-arrow-in-right me-2"></i>
                                                         {{__('Sign In')}}
                                                     </button>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-5 mt-2">
+                                                <div class="d-grid">
+                                                    <p>Don't have an account? <span><a class="mt-0" href="{{ route('register') }}">Register</a></span></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -74,4 +79,3 @@
     </div>
 </body>
 </html>
-
