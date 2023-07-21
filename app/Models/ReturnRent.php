@@ -7,7 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class ReturnRent extends Model
 {
+
+    protected $table = 'returns';
     use HasFactory;
 
-
+    public function rent()
+    {
+        return $this->belongsTo(Rent::class);
+    }
 }

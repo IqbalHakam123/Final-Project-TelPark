@@ -24,7 +24,7 @@
                     <th>Deadline</th>
                     <th>Return</th>
                     <th>Status</th>
-                    <th></th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,38 +36,33 @@
                         <td>{{ date('h:i:sa', strtotime($rent['borrow'])) }}</td>
                         <td>{{ date('h:i:sa', strtotime($rent['deadline'])) }}</td>
                         <td>
-                            @if (empty($rent->return))
-                                {{ '-' }}
-
-
+                            @if ($rent->return_rent)
+                            {{ $rent->return_rent->return }}
+                            @else
+                            -
                             @endif
-                                {{ Carbon\Carbon::now() }}
-
-                            {{-- if (empty($rent['return'])) {
-                                echo "-";
-                            }
-                            else {
-                                echo date('h:i:sa', strtotime($rent['return'])); --}}
-
+                        </td>
+                        <td>
+                            @if ($rent->return_rent)
+                                Returned
+                            @else
+                                Borrowed
+                            @endif
                         </td>
                         <td>
                             {{-- ACTIONS SECTION --}}
-                            <div class="d-flex">
-
-                                <div>
-                                    {{-- <form action="{{ route('visitors.destroy', ['visitor' => $visitor->id]) }}" method="POST">
+                            <div class="row">
+                                <div class="col-6">
+                                    <form action="{{ route('rents.return', $rent->id) }}" method="POST" enctype="multipart/form-data">
                                         @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-outline-danger btn-sm me-2 rounded-5"><i class="bi-trash"></i></button>
-                                    </form> --}}
+                                        @method('put')
+                                        <button type="submit" @class(['btn', 'btn-outline-primary', 'btn-sm', 'me-2', 'rounded-5', 'd-none' => $rent->return_rent])>
+                                            <i class="bi-arrow-return-left"></i>
+                                        </button>
+                                    </form>
                                 </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex">
-                                <a href="#" class="btn btn-outline-primary btn-sm me-2 rounded-5"><i class="bi-arrow-return-left"></i></a>
 
-                                <div>
+                                <div class="col-6">
                                     <form action="" method="POST">
                                         @csrf
                                         @method('delete')

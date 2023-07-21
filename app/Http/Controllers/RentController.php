@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Visitor;
 use App\Models\Lifebuoy;
 use App\Models\Rent;
+use App\Models\ReturnRent;
 use App\Models\Ride;
 use Carbon\Carbon;
 
@@ -144,5 +145,17 @@ class RentController extends Controller
         $stock = DB::table('lifebuoys')
             ->where('id', $lifebuoyId)
             ->increment('stock');
+    }
+
+    public function return_rent(Request $request, Rent $rent)
+    {
+        DB::transaction(function () use ($request, $rent) {
+            $return_rent = new ReturnRent();
+            $return_rent->rent_id = $rent->id;
+            $return_rent->return = Carbon::now();
+            $return_rent->save();
+        });
+
+        return redirect()->route('rents.index');
     }
 }
