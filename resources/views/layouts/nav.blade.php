@@ -58,7 +58,7 @@
                     <div class="row">
                         <div class="hstack gap-3 text-primary">
                             <img src="{{Vite::asset('resources/images/actor.png')}}" alt="login form" class="img-fluid" style="width:6%">
-                            <span style="font-weight: bold;"> Andre Ahmad </span>
+                            <span style="font-weight: bold;"> {{ Auth::user()->name }} </span>
                             <div class="vr mx-3"></div>
                             <div class="card bg-light border-0 p-2 rounded-5 text-primary">
                                 {{  now()->toDateString() }}
