@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rent extends Model
 {
+    protected $guarded = [];
     use HasFactory;
 
     public function lifebuoy()

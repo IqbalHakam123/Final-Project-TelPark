@@ -11,6 +11,7 @@ use App\Models\Rent;
 use App\Models\ReturnRent;
 use App\Models\Ride;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Redirect;
 
 class RentController extends Controller
 {
@@ -67,29 +68,35 @@ class RentController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        // $rent->borrow = date('h:i:sa', strtotime($_POST['borrow']));
-        // $rent->deadline = date('h:i:sa', strtotime($_POST['deadline']));
+        $lifebuoy_id = $request->input('lifebuoy');
+        DB::beginTransaction();
+        try {
+            $actualStock = Lifebuoy::where('id', $lifebuoy_id)->first()->stock;
 
-        // $visitor = Visitor::find($visitorId);
-        // $lifebuoy = Lifebuoy::find($lifebuoyId);
-        // CHECK STOCK
-        // $lifebuoy_stock = $lifebuoy->stock;
-        // $alert = 'Stok pelampung habis!';
+            if ($actualStock <= 0) {
+                DB::rollBack();
+                return Redirect::back()->with('error', 'Stok Pelampung ini kosong');
+            } else {
+                $rent = Rent::create([
+                    'ride_id' => $request->ride,
+                    'lifebuoy_id' => $request->lifebuoy,
+                    'visitor_id' => $request->visitor,
+                    'borrow' => Carbon::now(),
+                    'deadline' => Carbon::now()->setTime(17, 0, 0),
+                ]);
 
-        // if ($lifebuoy_stock < 1) {
-        //     return $alert;
-        // }
+                $oldStock = $rent->lifebuoy->stock ?? null;
 
-        // ELOQUENT
-        $rent = New Rent;
-        $rent->ride_id = $request->ride;
-        $rent->lifebuoy_id = $request->lifebuoy;
-        $rent->visitor_id = $request->visitor;
-        $rent->borrow = Carbon::now();
-        $rent->deadline = Carbon::now()->setTime(17, 0, 0);
-        $rent->save();
-
-        return redirect()->route('rents.index');
+                Lifebuoy::where('id', $request->lifebuoy)->update([
+                    'stock' => $oldStock - 1
+                ]);
+                DB::commit();
+                return redirect()->route('rents.index')->with('success', 'Data Sewa Berhasil Ditambahkan');
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return Redirect::back()->with('error', 'Error');
+        }
     }
 
     /**
@@ -124,39 +131,20 @@ class RentController extends Controller
         //
     }
 
-    public function check_stock($lifebuoyId)
-    {
-        $stock = DB::table('lifebuoys')
-            ->select('stock')
-            ->where('id', $lifebuoyId)
-            ->value('stock');
-
-        return $stock;
-    }
-
-    public function reduce_stock($lifebuoyId)
-    {
-        $stock = DB::table('lifebuoys')
-            ->where('id', $lifebuoyId)
-            ->decrement('stock');
-    }
-
-    public function add_stock($lifebuoyId)
-    {
-        $stock = DB::table('lifebuoys')
-            ->where('id', $lifebuoyId)
-            ->increment('stock');
-    }
 
     public function return_rent(Request $request, Rent $rent)
     {
         date_default_timezone_set('Asia/Jakarta');
-        DB::transaction(function () use ($request, $rent) {
-            $return_rent = new ReturnRent();
-            $return_rent->rent_id = $rent->id;
-            $return_rent->return = Carbon::now();
-            $return_rent->save();
-        });
+        $return_rent = ReturnRent::create([
+            'rent_id' => $rent->id,
+            'return' => Carbon::now(),
+        ]);
+
+        $oldStock = $return_rent->rent->lifebuoy->stock;
+
+        Lifebuoy::where('id', $return_rent->rent->lifebuoy->id)->update([
+            'stock' => $oldStock + 1
+        ]);
 
         return redirect()->route('rents.index');
     }

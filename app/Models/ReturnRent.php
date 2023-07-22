@@ -9,6 +9,7 @@ class ReturnRent extends Model
 {
 
     protected $table = 'returns';
+    protected $guarded = [];
     use HasFactory;
 
     public function rent()
