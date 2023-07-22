@@ -12,7 +12,11 @@
             </div>
         </div>
     </div>
-
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="table-responsive border rounded-4" style="margin-left: 2%">
         <table class="table table-hover mb-0  bg-white">
             <thead class="table-primary rounded-4">

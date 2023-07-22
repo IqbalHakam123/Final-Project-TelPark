@@ -25,6 +25,11 @@
                 <div class="col-lg-6 col-md-12 col-sm-12">
                     <div class="mb-5 p-4 mt-3">
                         <div class="row">
+                            @if (session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
                             <div class="col-md-12 col-lg-12 col-sm-12 mb-3 mt-5">
                                 <label for="ride" class="form-label">Ride Name</label>
                                 <select name="ride" id="ride" class="form-select rounded-5">
