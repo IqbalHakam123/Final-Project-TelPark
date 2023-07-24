@@ -33,6 +33,17 @@
                                 @enderror
                             </div>
                             <div class="col-md-12 mb-3">
+                                <label for="rides[]" class="form-label selectpicker me-3">Pilih Wahana</label>
+                                <select name="rides[]" id="rides[]" class="form-select rounded-5 selectpicker col-lg-12" multiple>
+                                    @foreach ($rides as $ride)
+                                        <option value="{{ $ride->id }}" {{ old('name') == $ride->id ? 'selected' : '' }}>{{ $ride->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('rides[]')
+                                    <div class="text-danger"><small>{{ $message }}</small></div>
+                                @enderror
+                            </div>
+                            <div class="col-md-12 mb-3">
                                 <label for="description" class="form-label">Description</label>
                                 <input class="form-control @error('description') is-invalid @enderror rounded-5" type="text" name="description" id="description" value="{{ old('description') }}" placeholder="Enter Description">
                                 @error('description')
@@ -58,4 +69,15 @@
         </div>
     </form>
 </div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('select').selectpicker();
+    });
+</script>
 @endsection

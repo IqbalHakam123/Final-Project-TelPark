@@ -24,11 +24,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::resource('visitors', VisitorController::class);
+    Route::resource('lifebuoys', LifebuoyController::class);
+    Route::resource('rents', RentController::class);
+    Route::put('/rents/{rent}/return', [RentController::class, 'return_rent'])->name('rents.return');
+});
 
-Route::resource('visitors', VisitorController::class);
 
-Route::resource('lifebuoys', LifebuoyController::class);
+
 
 Route::resource('rents', RentController::class);
 Route::put('/rents/{rent}/return', [RentController::class, 'return_rent'])->name('rents.return');
