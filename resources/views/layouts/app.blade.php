@@ -19,5 +19,6 @@
 <body style="background-color:#F9F9F9;">
     @include('layouts.nav')
     @vite('resources/js/app.js')
+    @stack('scripts')
 </body>
 </html>
