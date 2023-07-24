@@ -30,5 +30,6 @@ class HomeController extends Controller
         $visitorCount = Visitor::count();
         $rentCount = Rent::count();
         return view('home', ['lifebuoy_count' => $lifebuoyCount, 'visitor_count' => $visitorCount, 'rent_count' => $rentCount]);
+        
     }
 }
