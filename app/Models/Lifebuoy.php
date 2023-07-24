@@ -13,4 +13,9 @@ class Lifebuoy extends Model
     {
         return $this->hasMany(Rent::class);
     }
+
+    public function rides()
+    {
+        return $this->belongsToMany(Ride::class, 'ride_lifebuoy', 'lifebuoy_id', 'ride_id')->withTimestamps();
+    }
 }

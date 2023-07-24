@@ -26,7 +26,13 @@
             <tbody>
                 @foreach ($lifebuoys as $lifebuoy)
                     <tr>
-                        <td>{{ $lifebuoy->name }}</td>
+                        <td>{{ $lifebuoy->name }}
+                            (
+                                @foreach($lifebuoy->rides as $key => $ride)
+                                    {{ $ride->name }}@if(!$loop->last),@endif
+                                @endforeach
+                            )
+                        </td>
                         <td>{{ $lifebuoy->description }}</td>
                         <td>{{ $lifebuoy->stock }}</td>
                         <td>

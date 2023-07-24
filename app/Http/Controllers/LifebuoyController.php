@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Lifebuoy;
+use App\Models\Ride;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 
@@ -17,7 +18,7 @@ class LifebuoyController extends Controller
         $pageTitle = "Lifebuoy List";
 
         // ELOQUENT
-        $lifebuoys = Lifebuoy::all();
+        $lifebuoys = Lifebuoy::with('rides')->get();
 
         return view('lifebuoy.index', [
             'pageTitle' => $pageTitle,
@@ -31,11 +32,12 @@ class LifebuoyController extends Controller
     public function create()
     {
         $pageTitle = "Create Lifebuoy";
+        $rides = Ride::all();
 
         // // ELOQUENT
         // $ages = Age::all();
 
-        return view('lifebuoy.create', compact('pageTitle'));
+        return view('lifebuoy.create', compact('pageTitle', 'rides'));
     }
 
     /**
@@ -51,6 +53,7 @@ class LifebuoyController extends Controller
             'name' => 'required',
             'description' => 'required',
             'stock' => 'required',
+            'rides' => 'required|array',
             // 'age' => 'required',
         ], $messages);
 
@@ -64,6 +67,9 @@ class LifebuoyController extends Controller
         $lifebuoy->description = $request->description;
         $lifebuoy->stock = $request->stock;
         $lifebuoy->save();
+
+        $rideIds = $request->input('rides');
+        $lifebuoy->rides()->attach($rideIds);
 
         return redirect()->route('lifebuoys.index');
     }
@@ -85,8 +91,9 @@ class LifebuoyController extends Controller
 
         //ELOQUENT
         $lifebuoy = Lifebuoy::find($id);
+        $rides = Ride::all();
 
-        return view('lifebuoy.edit', compact('pageTitle', 'lifebuoy'));
+        return view('lifebuoy.edit', compact('pageTitle', 'lifebuoy', 'rides'));
     }
 
     /**
@@ -102,7 +109,7 @@ class LifebuoyController extends Controller
             'name' => 'required',
             'description' => 'required',
             'stock' => 'required',
-
+            'rides' => 'required|array',
         ], $messages);
 
         if ($validator->fails()) {
@@ -115,6 +122,8 @@ class LifebuoyController extends Controller
         $lifebuoy->description = $request->description;
         $lifebuoy->stock = $request->stock;
         $lifebuoy->save();
+
+        $lifebuoy->rides()->sync($request->input('rides'));
 
         return redirect()->route('lifebuoys.index');
     }

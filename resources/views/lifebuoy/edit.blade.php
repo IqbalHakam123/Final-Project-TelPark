@@ -27,10 +27,21 @@
                     <div class="mb-5 pt-5 mt-3">
                         <div class="row">
                             <div class="col-md-12 mb-3">
-                                <label for="name" class="form-label">Name</label>
+                                <label for="name" class="form-label">Lifebuoy Name</label>
                                 <input class="form-control @error('name') is-invalid @enderror rounded-5" type="text" name="name" id="name" value="{{ $errors->any() ? old('name') : $lifebuoy->name }}" placeholder="Enter Name">
                                 @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="rides[]" class="form-label">Choose Rides</label>
+                                <select name="rides[]" id="rides[]" class="form-select rounded-5 selectpicker col-lg-12" multiple>
+                                    @foreach($rides as $ride)
+                                        <option value="{{ $ride->id }}" @if(in_array($ride->id, $lifebuoy->rides->pluck('id')->toArray())) selected @endif>{{ $ride->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('rides[]')
+                                    <div class="text-danger"><small>{{ $message }}</small></div>
                                 @enderror
                             </div>
                             <div class="col-md-12 mb-3">
@@ -59,6 +70,17 @@
         </div>
     </form>
 </div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('select').selectpicker();
+    });
+</script>
 
 @vite('resources/js/app.js')
 @endsection
