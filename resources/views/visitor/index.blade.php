@@ -13,11 +13,11 @@
         </div>
     </div>
 
-    <div class="table-responsive border rounded-4" style="margin-left: 2%">
-        <table class="table table-hover mb-0  bg-white">
+    <div class="table-responsive" style="margin-left: 2%">
+        <table class="table table-hover mb-0  bg-white border rounded-4" id='visitorTable'>
             <thead class="table-primary rounded-4">
-                <tr >
-                    <th style="padding-left:2%">Name</th>
+                <tr>
+                    <th>Name</th>
                     <th>Phone</th>
                     <th>Age</th>
                     <th></th>
@@ -50,3 +50,11 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script type='module'>
+        $(document).ready(function() {
+            $('#visitorTable').DataTable();
+        })
+    </script>
+@endpush
