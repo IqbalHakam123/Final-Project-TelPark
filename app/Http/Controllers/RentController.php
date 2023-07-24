@@ -148,4 +148,12 @@ class RentController extends Controller
 
         return redirect()->route('rents.index');
     }
+
+    public function getLifebuoyFromRide(Request $request){
+        $rideSelect = $request->ride_id;
+
+        $rides = Ride::find($rideSelect);
+        $data = $rides->lifebuoys;
+        return response()->json(['lifebuoys' => $data]);
+    }
 }

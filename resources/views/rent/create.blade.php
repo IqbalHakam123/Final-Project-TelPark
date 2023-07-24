@@ -32,7 +32,8 @@
                             @endif
                             <div class="col-md-12 col-lg-12 col-sm-12 mb-3 mt-5">
                                 <label for="ride" class="form-label">Ride Name</label>
-                                <select name="ride" id="ride" class="form-select rounded-5">
+                                <select name="ride" id="rideSelect" class="form-select rounded-5">
+                                    <option value="">-- Choose Ride --</option>
                                     @foreach ($rides as $ride)
                                         <option value="{{ $ride->id }}" {{ old('ride') == $ride->id ? 'selected' : '' }}>{{ $ride->name }}</option>
                                     @endforeach
@@ -42,8 +43,9 @@
                                 @enderror
                             </div>
                             <div class="col-md-12 mb-3">
-                                <label for="name" class="form-label">Name</label>
+                                <label for="name" class="form-label">Visitor Name</label>
                                 <select name="visitor" id="name" class="form-select rounded-5">
+                                    <option value="">-- Choose Visitor --</option>
                                     @foreach ($visitors as $visitor)
                                         <option value="{{ $visitor->id }}" {{ old('name') == $visitor->id ? 'selected' : '' }}>{{ $visitor->name }}</option>
                                     @endforeach
@@ -54,7 +56,7 @@
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="name" class="form-label">Lifebuoy Name</label>
-                                <select name="lifebuoy" id="name" class="form-select rounded-5">
+                                <select name="lifebuoy" id="lifebuoySelect" class="form-select rounded-5">
                                     @foreach ($lifebuoys as $lifebuoy)
                                         <option value="{{ $lifebuoy->id }}" {{ old('name') == $lifebuoy->id ? 'selected' : '' }}>{{ $lifebuoy->name }}</option>
                                     @endforeach
@@ -89,5 +91,34 @@
         </div>
     </form>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="module">
+    $(document).ready(function () {
+        // Code for handling the change event of the first select
+        $('#rideSelect').on('change', function () {
+                var idRide = this.value;
+                $("#lifebuoySelect").html('');
+                $.ajax({
+                    url: "{{url('getLifebuoyFromRide')}}",
+                    type: "POST",
+                    data: {
+                        ride_id: idRide,
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function (result) {
+                        $('#lifebuoySelect').html('<option value="">-- Pilih Pelampung --</option>');
+                        $.each(result.lifebuoys, function (key, value) {
+                            $("#lifebuoySelect").append('<option value="' + value
+                                .id + '">' + value.name + '</option>');
+                        });
+                        // $('#city-dropdown').html('<option value="">-- Select City --</option>');
+                    }
+                });
+            });
+    });
+</script>
 @vite('resources/js/app.js')
 @endsection

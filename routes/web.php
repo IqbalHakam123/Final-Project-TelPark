@@ -32,3 +32,4 @@ Route::resource('lifebuoys', LifebuoyController::class);
 
 Route::resource('rents', RentController::class);
 Route::put('/rents/{rent}/return', [RentController::class, 'return_rent'])->name('rents.return');
+Route::post('/getLifebuoyFromRide', [RentController::class, 'getLifebuoyFromRide']);
