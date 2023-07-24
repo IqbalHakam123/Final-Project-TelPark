@@ -61,7 +61,7 @@
                             <span style="font-weight: bold;"> {{ Auth::user()->name }} </span>
                             <div class="vr mx-3"></div>
                             <div class="card bg-light border-0 p-2 rounded-5 text-primary">
-                                {{  now()->toDateString() }}
+                                {{  now()->toDayDateTimeString() }}
                             </div>
                           </div>
                     </div>
