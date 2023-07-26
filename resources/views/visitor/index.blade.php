@@ -14,7 +14,7 @@
     </div>
 
     <div class="table-responsive" style="margin-left: 2%">
-        <table class="table table-hover mb-0  bg-white border rounded-4" id='visitorTable'>
+        <table class="table table-hover mb-0  bg-white border rounded-4 datatable" id='visitorTable'>
             <thead class="table-primary rounded-4">
                 <tr>
                     <th>Name</th>
@@ -38,7 +38,7 @@
                                     <form action="{{ route('visitors.destroy', ['visitor' => $visitor->id]) }}" method="POST">
                                         @csrf
                                         @method('delete')
-                                        <button type="submit" class="btn btn-outline-danger btn-sm me-2 rounded-5"><i class="bi-trash"></i></button>
+                                        <button type="submit" class="btn btn-outline-danger btn-sm me-2 rounded-5 btn-delete" data-name="{{ $visitor->name }}"><i class="bi-trash"></i></button>
                                     </form>
                                 </div>
                             </div>
@@ -55,6 +55,26 @@
     <script type='module'>
         $(document).ready(function() {
             $('#visitorTable').DataTable();
+            $(".datatable").on("click", ".btn-delete", function (e) {
+                e.preventDefault();
+
+                var form = $(this).closest("form");
+                var name = $(this).data("name");
+
+                Swal.fire({
+                    title: "Are you sure want to delete\n" + name + "?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "bg-primary",
+                    confirmButtonText: "Yes, delete it!",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
         })
+
     </script>
 @endpush

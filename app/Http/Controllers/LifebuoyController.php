@@ -7,6 +7,7 @@ use App\Models\Lifebuoy;
 use App\Models\Ride;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LifebuoyController extends Controller
 {
@@ -19,7 +20,7 @@ class LifebuoyController extends Controller
 
         // ELOQUENT
         $lifebuoys = Lifebuoy::with('rides')->get();
-
+        confirmDelete();
         return view('lifebuoy.index', [
             'pageTitle' => $pageTitle,
             'lifebuoys' => $lifebuoys
@@ -70,6 +71,7 @@ class LifebuoyController extends Controller
 
         $rideIds = $request->input('rides');
         $lifebuoy->rides()->attach($rideIds);
+        Alert::success('Added Successfully', 'Lifebuoy Data Added Successfully.');
 
         return redirect()->route('lifebuoys.index');
     }
@@ -92,6 +94,8 @@ class LifebuoyController extends Controller
         //ELOQUENT
         $lifebuoy = Lifebuoy::find($id);
         $rides = Ride::all();
+
+
 
         return view('lifebuoy.edit', compact('pageTitle', 'lifebuoy', 'rides'));
     }
@@ -124,6 +128,7 @@ class LifebuoyController extends Controller
         $lifebuoy->save();
 
         $lifebuoy->rides()->sync($request->input('rides'));
+        Alert::success('Update Successfully', 'Lifebuoy Data Changed Successfully.');
 
         return redirect()->route('lifebuoys.index');
     }
@@ -135,6 +140,7 @@ class LifebuoyController extends Controller
     {
         // ELOQUENT
         Lifebuoy::find($id)->delete();
+        Alert::success('Deleted Successfully', 'Lifebuoy Data Deleted Successfully.');
 
         return redirect()->route('lifebuoys.index');
     }

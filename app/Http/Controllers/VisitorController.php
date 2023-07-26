@@ -7,6 +7,8 @@ use App\Models\Visitor;
 use App\Models\Age;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class VisitorController extends Controller
 {
@@ -19,6 +21,7 @@ class VisitorController extends Controller
 
         // ELOQUENT
         $visitors = Visitor::all();
+        confirmDelete();
 
         return view('visitor.index', [
             'pageTitle' => $pageTitle,
@@ -64,6 +67,8 @@ class VisitorController extends Controller
         $visitor->phone = $request->phone;
         $visitor->age_id = $request->age;
         $visitor->save();
+        Alert::success('Added Successfully', 'Visitor Data Added Successfully.');
+
 
         return redirect()->route('visitors.index');
     }
@@ -115,6 +120,8 @@ class VisitorController extends Controller
         $visitor->phone = $request->phone;
         $visitor->age_id = $request->age;
         $visitor->save();
+        Alert::success('Update Successfully', 'Visitor Data Updated Successfully.');
+
 
         return redirect()->route('visitors.index');
 
@@ -127,6 +134,8 @@ class VisitorController extends Controller
     {
         // ELOQUENT
         Visitor::find($id)->delete();
+        Alert::success('Deleted Successfully', 'Visitor Data Delelted Successfully.');
+
 
         return redirect()->route('visitors.index');
     }
