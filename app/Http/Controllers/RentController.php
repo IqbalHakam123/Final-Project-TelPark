@@ -12,6 +12,7 @@ use App\Models\ReturnRent;
 use App\Models\Ride;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RentController extends Controller
 {
@@ -94,7 +95,8 @@ class RentController extends Controller
                     'stock' => $oldStock - 1
                 ]);
                 DB::commit();
-                return redirect()->route('rents.index')->with('success', 'Data Sewa Berhasil Ditambahkan');
+                Alert::success('Added Successfully', 'Rent Data Added Successfully.');
+                return redirect()->route('rents.index');
             }
         } catch (\Exception $e) {
             DB::rollBack();
@@ -149,6 +151,7 @@ class RentController extends Controller
             'stock' => $oldStock + 1
         ]);
 
+        Alert::success('Returned Successfully', 'Lifebuoy Returned Successfully.');
         return redirect()->route('rents.index');
     }
 

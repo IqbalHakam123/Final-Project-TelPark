@@ -142,10 +142,13 @@ class LifebuoyController extends Controller
      */
     public function destroy(string $id)
     {
-        // ELOQUENT
-        Lifebuoy::find($id)->delete();
-        Alert::success('Deleted Successfully', 'Lifebuoy Data Deleted Successfully.');
-
-        return redirect()->route('lifebuoys.index');
+        try {
+            Lifebuoy::find($id)->delete();
+            Alert::success('Deleted Successfully', 'Lifebuoy Data Deleted Successfully.');
+            return redirect()->back();
+        } catch (\Exception $e){
+            Alert::error('Data cannot be deleted!', 'Rent is in Progress.');
+            return redirect()->back();
+        }
     }
 }

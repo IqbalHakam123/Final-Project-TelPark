@@ -137,10 +137,13 @@ class VisitorController extends Controller
     public function destroy(string $id)
     {
         // ELOQUENT
-        Visitor::find($id)->delete();
-        Alert::success('Deleted Successfully', 'Visitor Data Delelted Successfully.');
-
-
-        return redirect()->route('visitors.index');
+        try {
+            Visitor::find($id)->delete();
+            Alert::success('Deleted Successfully', 'Visitor Data Deleted Successfully.');
+            return redirect()->back();
+        } catch (\Exception $e){
+            Alert::error('Data cannot be deleted!', 'Rent is in Progress.');
+            return redirect()->back();
+        }
     }
 }
