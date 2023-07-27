@@ -16,13 +16,16 @@ class LifebuoyController extends Controller
      */
     public function index()
     {
-        $pageTitle = "Lifebuoy List";
+        $pageTitle = "Lifebuoy";
+        $subTitle = 'lifebuoy list';
 
         // ELOQUENT
         $lifebuoys = Lifebuoy::with('rides')->get();
         confirmDelete();
+
         return view('lifebuoy.index', [
             'pageTitle' => $pageTitle,
+            'subTitle' => $subTitle,
             'lifebuoys' => $lifebuoys
         ]);
     }
@@ -32,13 +35,14 @@ class LifebuoyController extends Controller
      */
     public function create()
     {
-        $pageTitle = "Create Lifebuoy";
+        $pageTitle = 'Lifebuoy';
+        $subTitle = "create lifebuoy";
         $rides = Ride::all();
 
         // // ELOQUENT
         // $ages = Age::all();
 
-        return view('lifebuoy.create', compact('pageTitle', 'rides'));
+        return view('lifebuoy.create', compact('pageTitle','subTitle', 'rides'));
     }
 
     /**
@@ -55,7 +59,6 @@ class LifebuoyController extends Controller
             'description' => 'required',
             'stock' => 'required',
             'rides' => 'required|array',
-            // 'age' => 'required',
         ], $messages);
 
         if ($validator->fails()) {
@@ -89,7 +92,8 @@ class LifebuoyController extends Controller
      */
     public function edit(string $id)
     {
-        $pageTitle = 'Edit Lifebuoy';
+        $pageTitle = 'Lifebuoy';
+        $subTitle = 'edit lifebuoy';
 
         //ELOQUENT
         $lifebuoy = Lifebuoy::find($id);
@@ -97,7 +101,7 @@ class LifebuoyController extends Controller
 
 
 
-        return view('lifebuoy.edit', compact('pageTitle', 'lifebuoy', 'rides'));
+        return view('lifebuoy.edit', compact('pageTitle','subTitle', 'lifebuoy', 'rides'));
     }
 
     /**

@@ -4,8 +4,9 @@
 <div class="container mt-4">
     <div class="row mb-4 mt-4" style="margin-left: 2%">
         <div class="col-lg-9 col-xl-10 ">
-            <h4 class="mb-3" style="color:#6AB0BE;"><b>{{ $pageTitle }}</b></h4>
-        </div>
+            <h3 class="mb-3" style="color:#6AB0BE;"><b>{{ $pageTitle }}</b></h3>
+            <p style="color:#979797;font-family: Poppins;font-size: 15px;font-style: normal;font-weight: 500;">{{ $subTitle }}</p>
+            </div>
         <div class="col-lg-3 col-xl-2">
             <div class="d-grid gap-2">
                 <a href="{{ route('rents.create') }}" class="btn btn-primary text-white rounded-5"><i class="bi bi-plus-circle me-1"></i> Add</a>

@@ -26,10 +26,18 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $pageTitle = 'Dashboard';
+        $subTitle = 'Home / Dashboard';
+
         $lifebuoyCount = Lifebuoy::count();
         $visitorCount = Visitor::count();
         $rentCount = Rent::count();
-        return view('home', ['lifebuoy_count' => $lifebuoyCount, 'visitor_count' => $visitorCount, 'rent_count' => $rentCount]);
-        
+        return view('home', [
+            'pageTitle' => $pageTitle,
+            'subTitle' => $subTitle,
+            'lifebuoy_count' => $lifebuoyCount,
+            'visitor_count' => $visitorCount,
+            'rent_count' => $rentCount]);
+
     }
 }

@@ -21,13 +21,15 @@ class RentController extends Controller
     public function index()
     {
 
-        $pageTitle = "Rent List";
+        $pageTitle = "Rent";
+        $subTitle = 'rent list';
 
         // ELOQUENT
         $rents = Rent::all();
 
         return view('rent.index', [
             'pageTitle' => $pageTitle,
+            'subTitle' => $subTitle,
             'rents' => $rents
         ]);
     }
@@ -37,14 +39,15 @@ class RentController extends Controller
      */
     public function create()
     {
-        $pageTitle = "Add Rent";
+        $pageTitle = "Rent";
+        $subTitle = 'create rent';
 
         // ELOQUENT
         $visitors = Visitor::all();
         $lifebuoys = Lifebuoy::all();
         $rides = Ride::all();
 
-        return view('rent.create', compact('pageTitle', 'visitors', 'lifebuoys', 'rides'));
+        return view('rent.create', compact('pageTitle', 'subTitle', 'visitors', 'lifebuoys', 'rides'));
     }
 
     /**
