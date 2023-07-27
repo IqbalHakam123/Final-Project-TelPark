@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Visitor;
 
 class VisitorSeeder extends Seeder
 {
@@ -13,22 +14,23 @@ class VisitorSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('visitors')->insert([
-            [
-                'name' => 'Annisa',
-                'phone' => '08122222356',
-                'age_id' => 1
-            ],
-            [
-                'name' => 'Rafly',
-                'phone' => '08155577799',
-                'age_id' => 2
-            ],
-            [
-                'name' => 'Iqbal',
-                'phone' => '018245612365',
-                'age_id' => 1
-            ]
-        ]);
+        // DB::table('visitors')->insert([
+        //     [
+        //         'name' => 'Annisa',
+        //         'phone' => '08122222356',
+        //         'age_id' => 1
+        //     ],
+        //     [
+        //         'name' => 'Rafly',
+        //         'phone' => '08155577799',
+        //         'age_id' => 2
+        //     ],
+        //     [
+        //         'name' => 'Iqbal',
+        //         'phone' => '018245612365',
+        //         'age_id' => 1
+        //     ]
+        // ]);
+        Visitor::factory()->count(10)->create();
     }
 }
