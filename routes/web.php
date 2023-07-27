@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\LifebuoyController;
 use App\Http\Controllers\RentController;
+use App\Http\Controllers\HistoryController;
 
 
 /*
@@ -30,6 +31,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('lifebuoys', LifebuoyController::class);
     Route::resource('rents', RentController::class);
     Route::put('/rents/{rent}/return', [RentController::class, 'return_rent'])->name('rents.return');
+    Route::post('/getLifebuoyFromRide', [RentController::class, 'getLifebuoyFromRide']);
 });
 
 
@@ -37,4 +39,4 @@ Route::middleware(['auth'])->group(function () {
 
 Route::resource('rents', RentController::class);
 Route::put('/rents/{rent}/return', [RentController::class, 'return_rent'])->name('rents.return');
-Route::post('/getLifebuoyFromRide', [RentController::class, 'getLifebuoyFromRide']);
+Route::get('/histories', [HistoryController::class, 'index'])->name('histories');
