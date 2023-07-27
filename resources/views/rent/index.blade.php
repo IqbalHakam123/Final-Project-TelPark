@@ -18,8 +18,8 @@
             {{ session('success') }}
         </div>
     @endif
-    <div class="table-responsive border rounded-4" style="margin-left: 2%">
-        <table class="table table-hover mb-0  bg-white">
+    <div class="table-responsive rounded-4" style="margin-left: 2%">
+        <table class="table table-hover mb-0  bg-white datatable" id="rentTable">
             <thead class="table-primary rounded-4">
                 <tr>
                     <th>Ride Name</th>
@@ -83,3 +83,11 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script type="module">
+    $(document).ready(function() {
+        $('#rentTable').DataTable();
+    });
+</script>
+@endpush
