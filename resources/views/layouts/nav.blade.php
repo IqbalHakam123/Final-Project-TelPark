@@ -33,6 +33,7 @@
                             <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu"></ul>
                     </li>
                     <li>
+                        <a href="{{ route('histories') }}" class="nav-link px-0 align-middle">
                         <a href="{{ route('histories')}}" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-clock"></i> <span class="ms-1 d-none d-sm-inline">History</span> </a>
                     </li>

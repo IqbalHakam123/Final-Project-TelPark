@@ -6,6 +6,29 @@
         <div class="col-lg-9 col-xl-10 ">
             <h4 class="mb-3" style="color:#6AB0BE;"><b>{{ $pageTitle }}</b></h4>
         </div>
+        <div class="col-lg-3 col-xl-6">
+            <div class="d-grid gap-2">
+                <ul class="list-inline mb-0 float-end">
+                    {{-- <li class="list-inline-item">
+                        <a href="{{ route('histories.exportExcel') }}" class="btn btn-outline-success rounded-5">
+                            <i class="bi bi-file-excel me-1"></i> to Excel
+                        </a>
+                    </li> --}}
+                    <li class="list-inline-item">
+                        <a href="{{ route('history.exportPdf') }}" class="btn btn-outline-danger rounded-5">
+                            <i class="bi bi-file-pdf me-1"></i> to PDF
+                        </a>
+                    </li>
+                </ul>
+                {{-- <a href="{{ route('history.exportExcel') }}" class="btn btn-outline-success">
+                    <i class="bi bi-download me-1"></i> to Excel
+                </a>
+                <a href="{{ route('history.exportPdf') }}" class="btn btn-outline-danger">
+                    <i class="bi bi-download me-1"></i> to PDF
+                </a> --}}
+            </div>
+        </div>
+
     </div>
     <div class="col-lg-3 col-xl-6">
         <ul class="list-inline mb-0 float-end">
