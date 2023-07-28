@@ -14,34 +14,7 @@
                     </h4>
                 </div>
 
-                  <ul class="nav nav-pills flex-column mb-sm-auto  align-items-center align-items-sm-start " id="menu" style="padding:10%;">
-                      <li class="nav-item mb-2">
-                          <a href="{{ route('home') }}" class="nav-link align-middle px-0">
-                              <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
-                          </a>
-                      </li>
-                      <li class="mb-2">
-                          <a href="{{ route('visitors.index') }}" class="nav-link px-0 align-middle">
-                              <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Visitor</span></a>
-                      </li>
-                      <li class="mb-2">
-                          <a href="{{ route('lifebuoys.index') }}" class="nav-link px-0 align-middle ">
-                              <i class="fs-4 bi-life-preserver"></i> <span class="ms-1 d-none d-sm-inline">Lifebuoy</span></a>
-                      </li>
-                      <li class="mb-2">
-                          <a href="{{ route('rents.index') }}" class="nav-link px-0 align-middle">
-                              <i class="fs-4 bi-tags-fill"></i> <span class="ms-1 d-none d-sm-inline">Rent</span> </a>
-                              <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
-                          </ul>
-                      </li>
-                      <li>
-                          <a href="{{ route('histories')}}" class="nav-link px-0 align-middle">
-                              <i class="fs-4 bi-clock"></i> <span class="ms-1 d-none d-sm-inline">History</span> </a>
-                      </li>
-                      <li>
-                        <a href="{{ route('logout') }}" class="nav-link px-0 align-middle" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();"><i class="fs-4 bi-box-arrow-left"></i>
-                            <span class="ms-1 d-none d-sm-inline">Logout</span>
+
                 <ul class="nav nav-pills flex-column mb-sm-auto  align-items-center align-items-sm-start " id="menu" style="padding:10%;">
                     <li class="nav-item mb-2">
                         <a href="{{ route('home') }}" class="nav-link align-middle px-0">
@@ -63,7 +36,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-0 align-middle">
+                        <a href="{{ route('histories') }}" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-clock"></i> <span class="ms-1 d-none d-sm-inline">History</span> </a>
                     </li>
                 </ul>
