@@ -21,6 +21,7 @@
                     <th>Name</th>
                     <th>Phone</th>
                     <th>Age</th>
+                    <th>Identity Card</th>
                     <th></th>
                 </tr>
             </thead>
@@ -30,6 +31,16 @@
                         <td>{{ $visitor->name }}</td>
                         <td>{{ $visitor->phone }}</td>
                         <td>{{ $visitor->age->name }}</td>
+                        <td>
+                            @if ($visitor->original_filename)
+                                <a href="{{ route('visitors.downloadFile', ['visitorId' => $visitor->id]) }}" class="btn btn-outline-primary btn-sm rounded-5">
+                                    <i class="bi bi-download me-1"></i> Download ID
+                                </a>
+                            @else
+                                None
+                            @endif
+
+                            </td>
                         <td>
                             {{-- ACTIONS SECTION --}}
                             <div class="d-flex">

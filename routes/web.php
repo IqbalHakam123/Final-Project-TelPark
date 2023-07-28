@@ -47,3 +47,5 @@ Route::get('/histories', [HistoryController::class, 'index'])->name('histories')
 
 Route::get('exportPdf', [HistoryController::class, 'exportPdf'])->name('history.exportPdf');
 
+Route::get('download-file/{visitorId}', [VisitorController::class,
+'downloadFile'])->name('visitors.downloadFile');
