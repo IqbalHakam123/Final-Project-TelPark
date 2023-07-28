@@ -13,8 +13,6 @@
                         <img src="{{Vite::asset('resources/images/nisul-1.png')}}" alt="login form" class="img-fluid me-2" style="width:15%"> Tel-Park
                     </h4>
                 </div>
-
-
                 <ul class="nav nav-pills flex-column mb-sm-auto  align-items-center align-items-sm-start " id="menu" style="padding:10%;">
                     <li class="nav-item mb-2">
                         <a href="{{ route('home') }}" class="nav-link align-middle px-0">
@@ -37,23 +35,19 @@
                     </li>
                     <li>
                         <a href="{{ route('histories') }}" class="nav-link px-0 align-middle">
+                        <a href="{{ route('histories')}}" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-clock"></i> <span class="ms-1 d-none d-sm-inline">History</span> </a>
                     </li>
+                    <li>
+                      <a href="{{ route('logout') }}" class="nav-link px-0 align-middle" onclick="event.preventDefault();
+                      document.getElementById('logout-form').submit();"><i class="fs-4 bi-box-arrow-left"></i>
+                          <span class="ms-1 d-none d-sm-inline">Logout</span>
+                      </a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                          @csrf
+                      </form>
+                    </li>
                 </ul>
-                <hr>
-                <div style="color: #5493A2;">
-                    <ul>
-                        {{-- <li> --}}
-                            <a href="{{ route('logout') }}" class="nav-link px-0 align-middle" onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();"><i class="fs-4 bi-box-arrow-left"></i>
-                                <span class="ms-1 d-none d-sm-inline">Logout</span>
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        {{-- </li> --}}
-                    </ul>
-                </div>
             </div>
         </div>
         <div class="col-lg-10">

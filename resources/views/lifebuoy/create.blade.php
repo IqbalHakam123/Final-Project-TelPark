@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-sm mt-4">
+<div class="container-sm mt-5">
     <form action="{{ route('lifebuoys.store') }}" method="POST">
         @csrf
         <div class="row mb-4 mt-4" style="margin-left: 2%">
             <div class="col-lg-9 col-xl-10">
-                <h4 class="mb-3" style="color:#6AB0BE"><b>{{$pageTitle}}</b></h4>
+                <h3 class="mb-3" style="color:#6AB0BE"><b>{{$pageTitle}}</b></h3>
+                <p style="color:#979797;font-family: Poppins;font-size: 15px;font-style: normal;font-weight: 500;">{{ $subTitle }}</p>
             </div>
             <div class="col-lg-3 col-xl-2">
                 <div class="d-grid gap-2">
@@ -18,7 +19,7 @@
             <div class="row">
                 <div class="col-6">
                     <div class="mb-3 p-5">
-                        <h4 style="font-weight:700; color: #5493A2;">Add Lifebuoy</h4>
+                        <h4 style="font-weight:700; color: #5493A2;">Create Lifebuoy</h4>
                     </div>
                     <img src="{{Vite::asset('resources/images/flamingo.png')}}" alt="login form" class="img-fluid me-2 mb-0 mt-0" style="width:70%; margin:10%">
                 </div>

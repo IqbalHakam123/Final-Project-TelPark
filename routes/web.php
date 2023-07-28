@@ -32,6 +32,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('rents', RentController::class);
     Route::put('/rents/{rent}/return', [RentController::class, 'return_rent'])->name('rents.return');
     Route::post('/getLifebuoyFromRide', [RentController::class, 'getLifebuoyFromRide']);
+    Route::get('/histories', [HistoryController::class, 'index'])->name('histories');
 });
 
 
@@ -45,5 +46,6 @@ Route::get('/histories', [HistoryController::class, 'index'])->name('histories')
 // Route::get('exportExcel', [HistoryController::class, 'exportExcel'])->name('histories.exportExcel');
 
 Route::get('exportPdf', [HistoryController::class, 'exportPdf'])->name('history.exportPdf');
+
 
 
