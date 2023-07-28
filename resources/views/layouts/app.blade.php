@@ -12,9 +12,11 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
     <!-- Scripts -->
     @vite('resources/sass/app.scss')
+    @vite('resources/css/sidebar.css')
+
+
 </head>
 <body style="background-color:#F9F9F9;">
     @include('layouts.nav')
