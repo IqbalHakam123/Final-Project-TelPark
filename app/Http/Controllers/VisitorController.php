@@ -17,7 +17,8 @@ class VisitorController extends Controller
      */
     public function index()
     {
-        $pageTitle = "Visitor List";
+        $pageTitle = "Visitor";
+        $subTitle = 'visitor list';
 
         // ELOQUENT
         $visitors = Visitor::all();
@@ -25,6 +26,7 @@ class VisitorController extends Controller
 
         return view('visitor.index', [
             'pageTitle' => $pageTitle,
+            'subTitle' => $subTitle,
             'visitors' => $visitors
         ]);
     }
@@ -34,12 +36,13 @@ class VisitorController extends Controller
      */
     public function create()
     {
-        $pageTitle = "Create Visitor";
+        $pageTitle = "Visitor";
+        $subTitle = 'Create Visitor';
 
         // ELOQUENT
         $ages = Age::all();
 
-        return view('visitor.create', compact('pageTitle', 'ages'));
+        return view('visitor.create', compact('pageTitle', 'subTitle', 'ages'));
     }
 
     /**
@@ -86,13 +89,14 @@ class VisitorController extends Controller
      */
     public function edit(string $id)
     {
-        $pageTitle = 'Edit Visitor';
+        $pageTitle = 'Visitor';
+        $subTitle = 'edit visitor';
 
         //ELOQUENT
         $ages = Age::all();
         $visitor = Visitor::find($id);
 
-        return view('visitor.edit', compact('pageTitle', 'ages', 'visitor'));
+        return view('visitor.edit', compact('pageTitle','subTitle', 'ages', 'visitor'));
     }
 
     /**
@@ -133,10 +137,13 @@ class VisitorController extends Controller
     public function destroy(string $id)
     {
         // ELOQUENT
-        Visitor::find($id)->delete();
-        Alert::success('Deleted Successfully', 'Visitor Data Delelted Successfully.');
-
-
-        return redirect()->route('visitors.index');
+        try {
+            Visitor::find($id)->delete();
+            Alert::success('Deleted Successfully', 'Visitor Data Deleted Successfully.');
+            return redirect()->back();
+        } catch (\Exception $e){
+            Alert::error('Data cannot be deleted!', 'Rent is in Progress.');
+            return redirect()->back();
+        }
     }
 }
