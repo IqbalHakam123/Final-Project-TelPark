@@ -15,6 +15,7 @@
 
     <!-- Scripts -->
     @vite('resources/sass/app.scss')
+    @vite('resources/css/sidebar.css')
 </head>
 <body style="background-color:#F9F9F9;">
     @include('layouts.nav')
