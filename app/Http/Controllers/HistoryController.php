@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\HistoriesExport;
 use App\Models\Rent;
-use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\HistoryExport;
 use PDF;
 
