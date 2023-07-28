@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-sm mt-5">
-    <form action="{{ route('visitors.store') }}" method="POST">
+    <form action="{{ route('visitors.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row mb-4 mt-4" style="margin-left: 2%">
             <div class="col-lg-9 col-xl-10">
@@ -52,6 +52,10 @@
                                 @error('age')
                                     <div class="text-danger"><small>{{ $message }}</small></div>
                                 @enderror
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="id_card" class="form-label">Identity Card</label>
+                                <input type="file" class="form-control rounded-5" name="id_card" id="id_card">
                             </div>
                         </div>
                         <div class="row mt-5">

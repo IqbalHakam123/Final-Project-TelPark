@@ -1,14 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-sm mt-4">
+<div class="container-sm mt-5">
     <form action="{{ route('visitors.update', ['visitor' => $visitor->id]) }}" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
         @csrf
         @method('put')
         <div class="row mb-4 mt-4" style="margin-left: 2%">
             <div class="col-lg-9 col-xl-10">
-                <h3 class="mb-3" style="color: #6AB0BE"><b>{{$pageTitle}}</b></h3>
-                <p style="color:#979797;font-family: Poppins;font-size: 15px;font-style: normal;font-weight: 500;">{{ $subTitle }}</p>
+                <h4 class="mb-3" style="color: #6AB0BE"><b>{{$pageTitle}}</b></h4>
             </div>
             <div class="col-lg-3 col-xl-2">
                 <div class="d-grid gap-2">
@@ -22,7 +21,7 @@
                     <div class="p-5 pb-3">
                         <h4 style="font-weight: 700; color:#5493A2"> Edit Visitor</h4>
                     </div>
-                    <img src="{{ Vite::asset('resources/images/actor-2.png')}}" alt="login form" class="img-fluid me-2 mb-5 mt-0" style="width: 60%; margin:10%">
+                    <img src="{{ Vite::asset('resources/images/actor-2.png')}}" alt="login form" class="img-fluid me-2 mb-3 mt-0" style="width: 60%; margin:10%">
                 </div>
                 <div class="col-6">
                     <div class="mb-5 p-5 mt-3">
@@ -30,15 +29,11 @@
                             <div class="col-md-12 mb-3 mt-5">
                                 <label for="name" class="form-label">Name</label>
                                 <input class="form-control @error('name') is-invalid @enderror rounded-5" type="text" name="name" id="name" value="{{ $errors->any() ? old('name') : $visitor->name }}" placeholder="Enter Name">
-
                                 @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-
                             <div class="col-md-12 mb-3">
-                            <div class="col-md-6 mb-3">
-
                                 <label for="phone" class="form-label">Phone</label>
                                 <input class="form-control @error('phone') is-invalid @enderror rounded-5" type="text" name="phone" id="phone" value="{{ $errors->any() ? old('phone') : $visitor->phone }}" placeholder="Enter Phone" required="">
                                 @error('phone')
@@ -63,6 +58,15 @@
                                 @error('age')
                                     <div class="text-danger"><small>{{ $message }}</small></div>
                                 @enderror
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="id_card" class="form-label">Identity Card</label>
+                                @if ($visitor->original_filename)
+                                <h6>{{ $visitor->original_filename }}</h6>
+                                @else
+                                    None
+                                @endif
+                                <input type="file" class="form-control rounded-5" name="id_card" id="id_card">
                             </div>
                         </div>
                         <div class="row mt-5">

@@ -64,14 +64,31 @@ class VisitorController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
+        // GET FILE
+        $file = $request->file('id_card');
+
+        if ($file != null) {
+            $originalFilename = $file->getClientOriginalName();
+            $encryptedFilename = $file->hashName();
+
+            // STORE FILE
+            $file->store('public/files');
+        }
+
         // ELOQUENT
+
         $visitor = New Visitor;
         $visitor->name = $request->name;
         $visitor->phone = $request->phone;
         $visitor->age_id = $request->age;
-        $visitor->save();
-        Alert::success('Added Successfully', 'Visitor Data Added Successfully.');
 
+        if ($file != null) {
+            $visitor->original_filename = $originalFilename;
+            $visitor->encrypted_filename = $encryptedFilename;
+        }
+
+
+        $visitor->save();
 
         return redirect()->route('visitors.index');
     }
@@ -118,14 +135,36 @@ class VisitorController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
+        // GET FILE
+        $file = $request->file('id_card');
+
+        if ($file != null) {
+            $visitor = Visitor::find($id);
+            $encryptedFilename = 'public/files/'.$visitor->encrypted_filename;
+            Storage::delete($encryptedFilename);
+        }
+
+        if ($file != null) {
+            $originalFilename = $file->getClientOriginalName();
+            $encryptedFilename = $file->hashName();
+
+            // STORE FILE
+            $file->store('public/files');
+        }
+
         // ELOQUENT
         $visitor = Visitor::find($id);
         $visitor->name = $request->name;
         $visitor->phone = $request->phone;
         $visitor->age_id = $request->age;
-        $visitor->save();
-        Alert::success('Update Successfully', 'Visitor Data Updated Successfully.');
 
+        if ($file != null) {
+            $visitor->original_filename = $originalFilename;
+            $visitor->encrypted_filename = $encryptedFilename;
+        }
+
+
+        $visitor->save();
 
         return redirect()->route('visitors.index');
 
@@ -146,4 +185,17 @@ class VisitorController extends Controller
             return redirect()->back();
         }
     }
+
+    public function downloadFile($visitorId)
+    {
+        $visitor = Visitor::find($visitorId);
+        $encryptedFilename = 'public/files/'.$visitor->encrypted_filename;
+        $downloadFilename = Str::lower($visitor->name.'_id.pdf');
+
+        if(Storage::exists($encryptedFilename)) {
+            return Storage::download($encryptedFilename, $downloadFilename);
+        }
+    }
+
 }
+
