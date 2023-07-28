@@ -68,7 +68,7 @@
                                 </div>
 
                                 <div class="col-6">
-                                    <form action="" method="POST">
+                                    <form action="{{ route('rents.destroy', ['rent' => $rent->id]) }}" method="POST">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-outline-danger btn-sm me-2 rounded-5"><i class="bi-trash"></i></button>
@@ -88,6 +88,25 @@
 <script type="module">
     $(document).ready(function() {
         $('#rentTable').DataTable();
+        $(".datatable").on("click", ".btn-delete", function (e) {
+            e.preventDefault();
+
+            var form = $(this).closest("form");
+            var name = $(this).data("name");
+
+            Swal.fire({
+                title: "Are you sure want to delete this rent?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "bg-primary",
+                confirmButtonText: "Yes, delete it!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
     });
 </script>
 @endpush

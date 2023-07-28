@@ -131,9 +131,20 @@ class RentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $rent = Rent::find($id);
+
+        if($rent->return_rent === null) {
+            Alert::error('Data cannot be deleted!', 'Rent is in Progress.');
+            return redirect()->back();
+        } elseif ($rent->return_rent) {
+            $rent->return_rent->delete();
+            $rent->delete();
+
+        Alert::success('Deleted Successfully', 'Rent Data Deleted Successfully.');
+        return redirect()->back();
+        }
     }
 
 
