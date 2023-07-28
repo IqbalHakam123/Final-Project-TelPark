@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\HistoriesExport;
 use App\Models\Rent;
 
 class HistoryController extends Controller
@@ -16,5 +18,10 @@ class HistoryController extends Controller
             'pageTitle' => $pageTitle,
             'histories' => $histories
         ]);
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new HistoriesExport, 'history.xlsx');
     }
 }

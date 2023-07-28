@@ -7,6 +7,15 @@
             <h4 class="mb-3" style="color:#6AB0BE;"><b>{{ $pageTitle }}</b></h4>
         </div>
     </div>
+    <div class="col-lg-3 col-xl-6">
+        <ul class="list-inline mb-0 float-end">
+            <li class="list-inline-item">
+                <a href="{{ route('histories.exportExcel')}}" class="btn btn-outline-success">
+                    <i class="bi bi-download me-1">to Excel</i>
+                </a>
+            </li>
+        </ul>
+    </div>
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}

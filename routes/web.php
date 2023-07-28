@@ -40,3 +40,4 @@ Route::middleware(['auth'])->group(function () {
 
 Route::resource('rents', RentController::class);
 Route::put('/rents/{rent}/return', [RentController::class, 'return_rent'])->name('rents.return');
+Route::get('exportExcel', [HistoryController::class, 'exportExcel'])->name('histories.exportExcel');
