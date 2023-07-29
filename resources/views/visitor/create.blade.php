@@ -17,16 +17,16 @@
         </div>
         <div class="card rounded-4 pt-2 p-2 pb-0 border-0" style="margin-left: 2%">
             <div class="row">
-                <div class="col-6">
+                <div class="col-lg-6 col-md-12 col-sm-12">
                     <div class="p-5 pb-3">
                         <h4 style="font-weight: 700; color:#5493A2"> Create Visitor</h4>
                     </div>
                     <img src="{{ Vite::asset('resources/images/actor-2.png')}}" alt="login form" class="img-fluid me-2 mb-5 mt-0" style="width: 60%; margin:10%">
                 </div>
-                <div class="col-6">
+                <div class="col-lg-6 col-md-12 col-sm-12">
                     <div class="mb-5 p-5 mt-3">
                         <div class="row">
-                            <div class="col-md-12 mb-3 mt-5">
+                            <div class="ol-md-12 col-lg-12 col-sm-12 mb-3 mt-5">
                                 <label for="name" class="form-label">Name</label>
 
                                 <input class="form-control @error('name') is-invalid @enderror rounded-5" type="text" name="name" id="name" value="{{ old('name') }}" placeholder="Enter Name">
