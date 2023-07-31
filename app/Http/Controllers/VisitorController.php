@@ -8,6 +8,8 @@ use App\Models\Age;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 
 class VisitorController extends Controller
