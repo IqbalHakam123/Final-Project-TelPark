@@ -24,7 +24,7 @@ class HistoriesExport implements FromView, WithStyles, ShouldAutoSize
     public function view(): View
     {
         return view('history.export_excel', [
-            'histories' => Rent::all()
+            'histories' => Rent::has('return_rent')->get()
         ]);
     }
 }
