@@ -11,7 +11,6 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
-
 class VisitorController extends Controller
 {
     /**
