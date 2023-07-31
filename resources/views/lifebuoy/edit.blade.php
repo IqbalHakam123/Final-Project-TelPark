@@ -62,7 +62,7 @@
                         </div>
                         <div class="row mt-5">
                             <div class="col-md-12 d-grid">
-                                <button type="submit" class="btn btn-primary btn-lg mt-3 text-white rounded-5"><i class="bi-check-circle me-2"></i> Save</button>
+                                <button type="submit" class="btn btn-primary btn-lg mt-3 text-white rounded-5"><i class="bi-check-circle me-2"></i> Edit</button>
                             </div>
                         </div>
                     </div>
