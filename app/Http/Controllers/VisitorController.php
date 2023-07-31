@@ -166,7 +166,7 @@ class VisitorController extends Controller
 
 
         $visitor->save();
-
+        Alert::success('Update Successfully', 'Visitor Data Changed Successfully.');
         return redirect()->route('visitors.index');
 
     }
