@@ -173,4 +173,15 @@ class RentController extends Controller
         $data = $rides->lifebuoys;
         return response()->json(['lifebuoys' => $data]);
     }
+
+    public function getLifebuoyFromVisitorAge(Request $request){
+        $rideSelect = $request->ride_id;
+        $visitorSelect = $request->visitor_id;
+
+        $visitorAge = Visitor::find($visitorSelect)->age_id;
+        $data = Lifebuoy::where('age_id', $visitorAge)->get();
+        //INI BELUM VALDI YACH
+        //AOOWKWOWK
+        return response()->json(['lifebuoys' => $data]);
+    }
 }

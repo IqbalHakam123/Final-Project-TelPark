@@ -46,6 +46,25 @@
                                 @enderror
                             </div>
                             <div class="col-md-12 mb-3">
+                                <label for="age" class="form-label">Age</label>
+                                <select name="age" id="age" class="form-select rounded-5">
+                                    @php
+                                        $selected = "";
+                                        if ($errors->any())
+                                            $selected = old('age');
+                                        else {
+                                            $selected = $lifebuoy->age_id;
+                                        }
+                                    @endphp
+                                    @foreach ($ages as $age)
+                                        <option value="{{ $age->id }}" {{ old('age') == $age->id ? 'selected' : ''}}>{{ $age->code.' - '.$age->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('age')
+                                    <div class="text-danger"><small>{{ $message }}</small></div>
+                                @enderror
+                            </div>
+                            <div class="col-md-12 mb-3">
                                 <label for="description" class="form-label">Description</label>
                                 <input class="form-control @error('description') is-invalid @enderror rounded-5" type="text" name="description" id="description" value="{{ $errors->any() ? old('description') : $lifebuoy->description }}" placeholder="Enter Description" required="">
                                 @error('description')

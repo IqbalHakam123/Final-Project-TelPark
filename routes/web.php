@@ -32,6 +32,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('rents', RentController::class);
     Route::put('/rents/{rent}/return', [RentController::class, 'return_rent'])->name('rents.return');
     Route::post('/getLifebuoyFromRide', [RentController::class, 'getLifebuoyFromRide']);
+    Route::post('/getLifebuoyFromVisitorAge', [RentController::class, 'getLifebuoyFromVisitorAge']);
     Route::get('/histories', [HistoryController::class, 'index'])->name('histories');
 });
 
