@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Lifebuoy;
 use App\Models\Ride;
+use App\Models\Age;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -38,11 +39,11 @@ class LifebuoyController extends Controller
         $pageTitle = 'Lifebuoy';
         $subTitle = "create lifebuoy";
         $rides = Ride::all();
+        $ages = Age::all();
 
         // // ELOQUENT
-        // $ages = Age::all();
 
-        return view('lifebuoy.create', compact('pageTitle','subTitle', 'rides'));
+        return view('lifebuoy.create', compact('pageTitle','subTitle', 'rides', 'ages'));
     }
 
     /**
@@ -70,6 +71,7 @@ class LifebuoyController extends Controller
         $lifebuoy->name = $request->name;
         $lifebuoy->description = $request->description;
         $lifebuoy->stock = $request->stock;
+        $lifebuoy->age_id = $request->age;
         $lifebuoy->save();
 
         $rideIds = $request->input('rides');
@@ -98,10 +100,10 @@ class LifebuoyController extends Controller
         //ELOQUENT
         $lifebuoy = Lifebuoy::find($id);
         $rides = Ride::all();
+        $ages = Age::all();
 
 
-
-        return view('lifebuoy.edit', compact('pageTitle','subTitle', 'lifebuoy', 'rides'));
+        return view('lifebuoy.edit', compact('pageTitle','subTitle', 'lifebuoy', 'rides', 'ages'));
     }
 
     /**
@@ -129,6 +131,7 @@ class LifebuoyController extends Controller
         $lifebuoy->name = $request->name;
         $lifebuoy->description = $request->description;
         $lifebuoy->stock = $request->stock;
+        $lifebuoy->age_id = $request->age;
         $lifebuoy->save();
 
         $lifebuoy->rides()->sync($request->input('rides'));
