@@ -180,8 +180,7 @@ class RentController extends Controller
 
         $visitorAge = Visitor::find($visitorSelect)->age_id;
         $data = Lifebuoy::where('age_id', $visitorAge)->get();
-        //INI BELUM VALDI YACH
-        //AOOWKWOWK
+        // belum valid
         return response()->json(['lifebuoys' => $data]);
     }
 }
