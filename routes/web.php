@@ -30,24 +30,19 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('visitors', VisitorController::class);
     Route::resource('lifebuoys', LifebuoyController::class);
     Route::resource('rents', RentController::class);
+
     Route::put('/rents/{rent}/return', [RentController::class, 'return_rent'])->name('rents.return');
-    Route::post('/getLifebuoyFromRide', [RentController::class, 'getLifebuoyFromRide']);
-    Route::post('/getLifebuoyFromVisitorAge', [RentController::class, 'getLifebuoyFromVisitorAge']);
+    Route::get('/getLifebuoysFromRideAndVisitor/{visitorId}/{rideId}', [RentController::class, 'getLifebuoysFromRideAndVisitor']);
+
     Route::get('/histories', [HistoryController::class, 'index'])->name('histories');
+    Route::get('exportExcel', [HistoryController::class, 'exportExcel'])->name('histories.exportExcel');
+    Route::get('exportPdf', [HistoryController::class, 'exportPdf'])->name('history.exportPdf');
+    
+    Route::get('download-file/{visitorId}', [VisitorController::class, 'downloadFile'])->name('visitors.downloadFile');
 });
 
 
 
 
-Route::resource('rents', RentController::class);
-Route::put('/rents/{rent}/return', [RentController::class, 'return_rent'])->name('rents.return');
-Route::get('exportExcel', [HistoryController::class, 'exportExcel'])->name('histories.exportExcel');
-Route::get('/histories', [HistoryController::class, 'index'])->name('histories');
 
 
-// Route::get('exportExcel', [HistoryController::class, 'exportExcel'])->name('histories.exportExcel');
-
-Route::get('exportPdf', [HistoryController::class, 'exportPdf'])->name('history.exportPdf');
-
-Route::get('download-file/{visitorId}', [VisitorController::class,
-'downloadFile'])->name('visitors.downloadFile');
