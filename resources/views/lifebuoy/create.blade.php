@@ -24,7 +24,7 @@
                     <img src="{{Vite::asset('resources/images/flamingo.png')}}" alt="login form" class="img-fluid me-2 mb-0 mt-0" style="width:70%; margin:10%">
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-12">
-                    <div class="mb-5 p-4 mt-3">
+                    <div class="mb-5 p-5 mt-3">
                         <div class="row">
                             <div class="col-md-12 col-lg-12 col-sm-12 mb-3 mt-5 ">
                                 <label for="name" class="form-label">Name</label>

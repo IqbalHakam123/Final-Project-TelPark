@@ -26,7 +26,7 @@
                 <div class="col-lg-6 col-md-12 col-sm-12">
                     <div class="mb-5 p-5 mt-3">
                         <div class="row">
-                            <div class="ol-md-12 col-lg-12 col-sm-12 mb-3 mt-5">
+                            <div class="col-md-12 col-lg-12 col-sm-12 mb-3 mt-5">
                                 <label for="name" class="form-label">Name</label>
 
                                 <input class="form-control @error('name') is-invalid @enderror rounded-5" type="text" name="name" id="name" value="{{ old('name') }}" placeholder="Enter Name">

@@ -166,21 +166,18 @@ class RentController extends Controller
         return redirect()->route('rents.index');
     }
 
-    public function getLifebuoyFromRide(Request $request){
-        $rideSelect = $request->ride_id;
+    public function getLifebuoysFromRideAndVisitor(Request $request, $visitorId, $rideId)
+    {
+        $visitor = Visitor::findOrFail($visitorId);
 
-        $rides = Ride::find($rideSelect);
-        $data = $rides->lifebuoys;
-        return response()->json(['lifebuoys' => $data]);
-    }
+        // Get the visitor's age_id
+        $ageId = $visitor->age_id;
 
-    public function getLifebuoyFromVisitorAge(Request $request){
-        $rideSelect = $request->ride_id;
-        $visitorSelect = $request->visitor_id;
+        // Get the lifebuoys for the new selected ride and the visitor's age_id
+        $lifebuoys = Lifebuoy::whereHas('rides', function ($query) use ($rideId) {
+            $query->where('ride_id', $rideId);
+        })->where('age_id', $ageId)->get();
 
-        $visitorAge = Visitor::find($visitorSelect)->age_id;
-        $data = Lifebuoy::where('age_id', $visitorAge)->get();
-        // belum valid
-        return response()->json(['lifebuoys' => $data]);
+        return response()->json($lifebuoys);
     }
 }

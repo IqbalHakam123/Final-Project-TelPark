@@ -34,7 +34,7 @@
                             <div class="col-md-12 col-lg-12 col-sm-12 mb-3 mt-5">
                                 <label for="ride" class="form-label">Ride Name</label>
                                 <select name="ride" id="rideSelect" class="form-select rounded-5">
-                                    <option value="">-- Choose Ride --</option>
+                                    <option value="" disabled selected>-- Choose Ride --</option>
                                     @foreach ($rides as $ride)
                                         <option value="{{ $ride->id }}" {{ old('ride') == $ride->id ? 'selected' : '' }}>{{ $ride->name }}</option>
                                     @endforeach
@@ -46,7 +46,7 @@
                             <div class="col-md-12 mb-3">
                                     <label for="name" class="form-label">Visitor Name</label>
                                     <select name="visitor" id="visitorSelect" class="form-select rounded-5">
-                                        <option value="">-- Choose Visitor --</option>
+                                        <option value="" disabled selected>-- Choose Visitor --</option>
                                         @foreach ($visitors as $visitor)
                                             <option value="{{ $visitor->id }}"
                                                 {{ old('name') == $visitor->id ? 'selected' : '' }}>{{ $visitor->name }}
@@ -60,9 +60,7 @@
                             <div class="col-md-12 mb-3">
                                 <label for="name" class="form-label">Lifebuoy Name</label>
                                 <select name="lifebuoy" id="lifebuoySelect" class="form-select rounded-5">
-                                    @foreach ($lifebuoys as $lifebuoy)
-                                        <option value="{{ $lifebuoy->id }}" {{ old('name') == $lifebuoy->id ? 'selected' : '' }}>{{ $lifebuoy->name }}</option>
-                                    @endforeach
+                                    <option value="" disabled selected>-- Choose Lifebuoy --</option>
                                 </select>
                                 @error('lifebuoy')
                                     <div class="text-danger"><small>{{ $message }}</small></div>
@@ -98,52 +96,42 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script type="module">
-    $(document).ready(function () {
-        // Code for handling the change event of the first select
-        $('#rideSelect').on('change', function () {
-            var idRide = this.value;
-            $("#lifebuoySelect").html('');
-            $.ajax({
-                url: "{{url('getLifebuoyFromRide')}}",
-                type: "POST",
-                data: {
-                    ride_id: idRide,
-                    _token: '{{csrf_token()}}'
-                },
-                dataType: 'json',
-                success: function (result) {
-                    $('#lifebuoySelect').html('<option value="">-- Pilih Pelampung --</option>');
-                    $.each(result.lifebuoys, function (key, value) {
-                        $("#lifebuoySelect").append('<option value="' + value
-                            .id + '">' + value.name + '</option>');
-                    });
-                    // $('#city-dropdown').html('<option value="">-- Select City --</option>');
-                }
-            });
+    function fetchLifebuoys() {
+        var rideId = $('#rideSelect').val();
+        var visitorId = $('#visitorSelect').val();
+
+        // Make an AJAX request to fetch lifebuoys for the selected ride and visitor
+        $.ajax({
+            url: '/getLifebuoysFromRideAndVisitor/' + visitorId + '/' + rideId,
+            method: 'GET',
+            success: function (data) {
+                var lifebuoySelect = $('#lifebuoySelect');
+
+                // Clear previous options
+                lifebuoySelect.empty();
+
+                // Populate lifebuoy options based on the response data
+                data.forEach(function (lifebuoy) {
+                    lifebuoySelect.append($('<option>', {
+                        value: lifebuoy.id,
+                        text: lifebuoy.name
+                    }));
+                });
+            },
+            error: function (xhr, status, error) {
+                console.log(error); // Handle error if needed
+            }
         });
-        $('#visitorSelect').on('change', function() {
-            var idVisitor = this.value;
-            $("#lifebuoySelect").html('');
-            $.ajax({
-                url: "{{ url('getLifebuoyFromVisitorAge') }}",
-                type: "POST",
-                data: {
-                    visitor_id: idVisitor,
-                    _token: '{{ csrf_token() }}'
-                },
-                dataType: 'json',
-                success: function(result) {
-                    $('#lifebuoySelect').html(
-                        '<option value="">-- Pilih Pelampung --</option>');
-                    $.each(result.lifebuoys, function(key, value) {
-                        $("#lifebuoySelect").append('<option value="' + value
-                            .id + '">' + value.name + '</option>');
-                    });
-                    // $('#city-dropdown').html('<option value="">-- Select City --</option>');
-                }
-            });
-        });
+    }
+
+    // Bind the fetchLifebuoys function to the change event of ride and visitor selects
+    $('#rideSelect, #visitorSelect').change(function () {
+        fetchLifebuoys();
     });
+
+    // Fetch lifebuoys initially when the page loads
+    fetchLifebuoys();
+
 </script>
 @vite('resources/js/app.js')
 @endsection
