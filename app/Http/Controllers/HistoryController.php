@@ -15,7 +15,7 @@ class HistoryController extends Controller
     public function index()
     {
         $pageTitle = 'History';
-        $histories = Rent::has('return_rent')->get();
+        $histories = Rent::has('return_rent')->withTrashed()->get();
 
         return view('history.index', [
             'pageTitle' => $pageTitle,
