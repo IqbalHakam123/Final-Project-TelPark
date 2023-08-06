@@ -57,7 +57,7 @@
                                         }
                                     @endphp
                                     @foreach ($ages as $age)
-                                        <option value="{{ $age->id }}" {{ old('age') == $age->id ? 'selected' : ''}}>{{ $age->code.' - '.$age->name }}</option>
+                                    <option value="{{ $age->id }}" {{ old('age') == $age->id ? 'selected' : ($lifebuoy->age_id == $age->id ? 'selected' : '')}}>{{ $age->code.' - '.$age->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('age')
