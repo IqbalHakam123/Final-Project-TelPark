@@ -14,12 +14,12 @@ class Rent extends Model
 
     public function lifebuoy()
     {
-        return $this->belongsTo(Lifebuoy::class);
+        return $this->belongsTo(Lifebuoy::class)->withTrashed();
     }
 
     public function visitor()
     {
-        return $this->belongsTo(Visitor::class);
+        return $this->belongsTo(Visitor::class)->withTrashed();
     }
 
     public function ride()
